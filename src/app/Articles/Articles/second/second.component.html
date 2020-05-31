@@ -1,0 +1,19 @@
+        <div>
+         <div *ngFor="let t of products" >
+             <!-- <div *ngFor="let item of t.articles" > -->
+            <!-- <h5><b> <a [routerLink]="['articles', item.title]" ><b>  {{item | json}} </b></a></b></h5> -->
+                <!-- <img  src=""   alt="img"><<    -->
+             <!-- <p>{{t|json }}</p> -->
+             <!-- <img src={{"https://snipcart-strapi.herokuapp.com${product.image.url}"}}
+             [src]=""> -->
+             <!-- <img [src]="https://infinite-mountain-30260.herokuapp.com/uploads/.url"> -->
+
+                   <div *ngFor="let item of t.image1" >                
+                    <img src="https://infinite-mountain-30260.herokuapp.com{{item.url}}">  
+                   </div>
+
+         </div> 
+     </div>   
+
+     
+ 
