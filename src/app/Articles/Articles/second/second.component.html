@@ -1,19 +1,145 @@
-        <div>
-         <div *ngFor="let t of products" >
-             <!-- <div *ngFor="let item of t.articles" > -->
-            <!-- <h5><b> <a [routerLink]="['articles', item.title]" ><b>  {{item | json}} </b></a></b></h5> -->
-                <!-- <img  src=""   alt="img"><<    -->
-             <!-- <p>{{t|json }}</p> -->
-             <!-- <img src={{"https://snipcart-strapi.herokuapp.com${product.image.url}"}}
-             [src]=""> -->
-             <!-- <img [src]="https://infinite-mountain-30260.herokuapp.com/uploads/.url"> -->
+ <section>
+      <div class="container">
+      <div class="row">
+      <div class="col-md-12 col-lg-8">
+      <h4 class="p-title"> <b> <a [routerLink]="['/categeroys', 'tech']" >Recent news  </a></b> </h4>
+      <div class="row">
+      <div class="col-sm-6" *ngFor="let item of products">
+         <div *ngFor="let item of item.image1" >                
+          <img src="https://infinite-mountain-30260.herokuapp.com{{item.url}}">  
+         </div>    
+        <h4 class="pt-20"><a   [routerLink]="['articles', item.title]" ><b>  {{item.title}} </b></a></h4>
+        <ul class="list-li-mr-20 pt-10 pb-20">
+        <li class="color-lite-black">by <a href="#" class="color-black"><b> {{item.author}},</b></a>
+        {{item.updated_at }}</li>
+        <li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i><b>30,190</b></li>
+        <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i><b>47</b></li>
+        </ul> 
+        <p>{{item.description}}</p>
+        </div>
+   <!-- second ngfor   -->
+  
+   <div class="col-sm-6" >
+    <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#" *ngFor="let item of second">
+    <div class="wh-100x abs-tlr">
+      <div *ngFor="let t of item.image1" >                
+        <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+      </div> 
+     </div>
+    <div class="ml-120 min-h-100x">
+    <h5><b> <a  [routerLink]="['articles', item.title]" ><b>  {{item.title}} </b></a></b></h5>
+    <h6 class="color-lite-black pt-10">by <span class="color-black"><b>{{item.author}},</b></span> {{item.updated_at }}</h6>
+    </div>
+    </a>
+    </div>
+    </div>
 
-                   <div *ngFor="let item of t.image1" >                
-                    <img src="https://infinite-mountain-30260.herokuapp.com{{item.url}}">  
-                   </div>
+    <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'world']" > news</a>   </b></h4>
+    <div class="row" >
+    <div class="col-sm-6" *ngFor="let item of third">
+      <div *ngFor="let t of item.image1" >                
+        <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+      </div> 
+     <h4 class="pt-20"><a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h4>
+    <ul class="list-li-mr-20 pt-10 mb-30">
+    <li class="color-lite-black">by <a href="#" class="color-black"><b> {{item.author}},</b></a>
+          {{item.updated_at }}</li>
+     <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>47</li>
+    </ul>
+    </div>
+     </div>
 
-         </div> 
-     </div>   
+    <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'science']" > news</a>   </b></h4>
+    <div class="row" >
+    <div class="col-sm-6" *ngFor="let item of third">
+      <div *ngFor="let t of item.image1" >                
+        <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+      </div> 
+     <h4 class="pt-20"><a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h4>
+    <ul class="list-li-mr-20 pt-10 mb-30">
+    <li class="color-lite-black">by <a href="#" class="color-black"><b> {{item.author}},</b></a>
+          {{item.updated_at }}</li>
+     <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>47</li>
+    </ul>
+    </div>
+     </div>
+    
+     <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'entertainment']" > news</a>   </b></h4>
+     <div class="row" >
+     <div class="col-sm-6" *ngFor="let item of third">
+       <div *ngFor="let t of item.image1" >                
+         <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+       </div> 
+      <h4 class="pt-20"><a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h4>
+     <ul class="list-li-mr-20 pt-10 mb-30">
+     <li class="color-lite-black">by <a href="#" class="color-black"><b> {{item.author}},</b></a>
+           {{item.updated_at }}</li>
+      <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>47</li>
+     </ul>
+     </div>
+      </div>
+    
+      <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'entertainment']" > news</a>   </b></h4>
+      <div class="row" >
+      <div class="col-sm-6" *ngFor="let item of third">
+        <div *ngFor="let t of item.image1" >                
+          <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+        </div> 
+       <h4 class="pt-20"><a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h4>
+      <ul class="list-li-mr-20 pt-10 mb-30">
+      <li class="color-lite-black">by <a href="#" class="color-black"><b> {{item.author}},</b></a>
+            {{item.updated_at }}</li>
+       <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>47</li>
+      </ul>
+      </div>
+       </div>      
+   
+    <a class="dplay-block btn-brdr-primary mt-20 mb-md-50"  [routerLink]="['/categeroys', 'cronavirus']"><b>VIEW MORE</b></a>
+    </div>
+    <div class="d-none d-md-block d-lg-none col-md-3"></div>
+    <div class="col-md-6 col-lg-4">
+    <div class="pl-20 pl-md-0">
+    <ul class="list-block list-li-ptb-15 list-btm-border-white bg-primary text-center">
+    <li><b>1 BTC = $13,2323</b></li>
+    <li><b>1 BCH = $13,2323</b></li>
+    <li><b>1 ETH = $13,2323</b></li>
+    <li><b>1 LTC = $13,2323</b></li>
+    <li><b>1 DAS = $13,2323</b></li>
+    <li><b>1 BCC = $13,2323</b></li>
+    </ul>
 
+
+    <div class="mtb-50   " >
+    <h4 class="p-title" ><b>POPULAR POSTS</b></h4>
+    <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#" *ngFor="let item of  second ">
+    <div class="wh-100x abs-tlr">
+      <div *ngFor="let t of item.image1" >                
+        <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+      </div> 
+     </div>
+    <div class="ml-120 min-h-100x">
+    <h5> <a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h5>
+    <h6 class="color-lite-black pt-10">by <span class="color-black"><b>{{item.author}},</b></span>   {{item.updated_at }}</h6>
+    </div>
+    </a>
+    </div>
+     
+    <div class="mtb-50 mb-md-0">
+    <h4 class="p-title"><b>NEWSLETTER</b></h4>
+    <p class="mb-20">Subscribe to our newsletter to get notification about new updates,
+    information, discount, etc..</p>
+    <form class="nwsltr-primary-1">
+    <input type="text" placeholder="Your email">
+    <button type="submit"><i class="ion-ios-paperplane"></i></button>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+     </section>
+  
+  <router-outlet></router-outlet>
      
  

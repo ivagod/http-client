@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { catchError, retry, finalize, map, tap } from 'rxjs/operators';
-import { Product } from '@shared/product';
-import { SeoService } from '@shared/seo.service';
  
 @Component({
   selector: 'app-second',
@@ -13,22 +11,105 @@ import { SeoService } from '@shared/seo.service';
 })
 export class SecondComponent implements OnInit {
 
-  //public  products: Observable<any>;
-
-  public products:  Observable<Product>;
-
+  public  products: Observable<any>;
+  public  second: Observable<any>;
+  public  third: Observable<any>;
+  public  forth: Observable<any>;
+  public  five: Observable<any>;
+  public  six: Observable<any>;
+  public  seven: Observable<any>;
+  
   url = 'https://infinite-mountain-30260.herokuapp.com/articles?&_limit=1';
   loading: boolean = true;
 
-  constructor(private http: HttpClient ,private seo:SeoService) { }
+  constructor(private http: HttpClient ) { }
 
   ngOnInit(): void {
-   }
- 
-  
+    this.http_get_01();
+    this. http_get_02(); 
+    this. http_get_03();
+    this.http_get_04();
+    this.http_get_05();
+    this.http_get_06();
+    this.http_get_07();
+  }
 
+  http_get_01(){
+    this.loading = true;
+    this.http.get<any[]>(this.url)
+    .pipe(  
+        map(data => data['products']),
+           retry(3),
+          finalize(() => this.loading = false),   
+          catchError(this.handleError)
+    ).subscribe((res) => {
+     return  this.products = res;
+     });
+    }
 
-   
+     
+    http_get_02() {
+      this.loading = true;
+      this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=5')
+      .pipe(
+        retry(3),
+        finalize(() => this.loading = false),
+        catchError(this.handleError)
+      ).subscribe((res) => {
+        this.second = res;
+       });}
+
+      http_get_03() {
+        this.loading = true;
+        this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
+        .pipe(
+          retry(7),
+          finalize(() => this.loading = false),
+          catchError(this.handleError)
+        ).subscribe((res) => {
+          this.third = res;
+         });}
+        http_get_04() {
+          this.loading = true;
+          this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
+          .pipe(
+            retry(3),
+            finalize(() => this.loading = false),
+            catchError(this.handleError)
+          ).subscribe((res) => {
+            this.second = res;
+           });}
+          http_get_05() {
+            this.loading = true;
+            this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
+            .pipe(
+              retry(3),
+              finalize(() => this.loading = false),
+              catchError(this.handleError)
+            ).subscribe((res) => {
+              this.second = res;
+             });}
+            http_get_06() {
+              this.loading = true;
+              this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
+              .pipe(
+                retry(3),
+                finalize(() => this.loading = false),
+                catchError(this.handleError)
+              ).subscribe((res) => {
+                this.second = res;
+               });}
+                http_get_07() {
+                  this.loading = true;
+                  this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
+                  .pipe(
+                    retry(3),
+                    finalize(() => this.loading = false),
+                    catchError(this.handleError)
+                  ).subscribe((res) => {
+                    this.second = res;
+                   });}
+
                    
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

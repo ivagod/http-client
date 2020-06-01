@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { SeoService } from '@shared/seo.service';
  
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { MatSidenav } from '@angular/material/sidenav';
  
 })
 export class AppComponent {
-  
+  constructor(private meta: SeoService) {
+    this.meta.updateTitle();
+}
 }
  

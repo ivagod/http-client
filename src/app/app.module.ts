@@ -24,7 +24,8 @@ import { CategeroyDetailsComponent } from './categeroy-details/categeroy-details
     
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from './navbar/navbar.component';
- 
+import { SeoService } from '@shared/seo.service';
+  
   
  @NgModule({
   declarations: [
@@ -33,8 +34,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     FooterComponent,
     DetailsComponent,
     CategeroyDetailsComponent,
-    NavbarComponent
-  ],
+    NavbarComponent,
+   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
@@ -53,7 +54,7 @@ import { NavbarComponent } from './navbar/navbar.component';
      ArticlesModule,
      CategoryModule,
   ],
-  providers: [   ],
+  providers: [ SeoService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,44 +1,42 @@
-import { Injectable } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class SeoService {
-
-  private appColor = '#343a40';
-  private appImage = '/assets/logo.svg';
-  private appTitle = 'Store';
-  private appDescription = 'Online store built with Angular';
-
-  constructor(private meta: Meta, private title: Title) { }
-
-  public setMetaData(config) {
-    const description = config.description || this.appDescription;
-    const image = config.image || this.appImage;
-    const title = config.title
-      ? `${config.title} - ${this.appTitle}`
-      : this.appTitle;
-
-    this.title.setTitle(title);
-
-    const tags = [
-      { name: 'description', content: description },
-      { name: 'theme-color', content: this.appColor },
-      { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:image', content: image },
-      { name: 'twitter:title', content: title },
-      { name: 'twitter:description', content: description },
-      { name: 'apple-mobile-web-app-capable', content: 'yes' },
-      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-      { name: 'apple-mobile-web-app-title', content: title },
-      { name: 'apple-touch-startup-image', content: image },
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: description },
-      { property: 'og:image', content: image },
-    ];
-
-    tags.forEach(tag => this.meta.updateTag(tag));
-  }
-}
  
+   import { Injectable } from '@angular/core';
+  import { Title } from '@angular/platform-browser';
+  import { Meta } from '@angular/platform-browser';
+  import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { filter, map, mergeMap } from 'rxjs/operators';
+  
+  @Injectable()
+  
+  export class SeoService{
+    constructor(
+      private titleService: Title,
+      private meta: Meta,
+      private router: Router,
+      private activatedRoute: ActivatedRoute
+  ) { }
+
+  updateMetaInfo(content, author, category) {
+      this.meta.updateTag({ name: 'description', content: content });
+      this.meta.updateTag({ name: 'author', content: author });
+      this.meta.updateTag({ name: 'keywords', content: category });
+  }
+
+  updateTitle(title?: string) {
+      if (!title) {
+          this.router.events
+              .pipe(
+                  filter((event) => event instanceof NavigationEnd),
+                  map(() => this.activatedRoute),
+                  map((route) => {
+                      while (route.firstChild) { route = route.firstChild; }
+                      return route;
+                  }),
+                  filter((route) => route.outlet === 'primary'),
+                  mergeMap((route) => route.data)).subscribe((event) => {
+                      this.titleService.setTitle(event['title'] + ' | Site name');
+                  });
+      } else {
+          this.titleService.setTitle(title + ' | Site name');
+      }
+  }
+  };

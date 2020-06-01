@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { SeoService } from '@shared/seo.service';
 
 
 @Component({
@@ -18,9 +19,9 @@ export class DetailsComponent implements OnInit,OnChanges {
   public  data: Observable<any>;
    loading = true;
 
-  constructor(public activatedRoute: ActivatedRoute,private http: HttpClient){
+  constructor(public activatedRoute: ActivatedRoute,private http: HttpClient,private seo: SeoService){
  
-    
+    this.seo.updateTitle();
   }
    //  get(
   //  `http://localhost:1337/articles?slug=${this.title} `,
