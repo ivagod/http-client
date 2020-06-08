@@ -1,1 +1,94 @@
-<p>categeroy-details works!</p>
+<section class="blog-section spad">
+  <div class="container">
+  <div class="row">
+  <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1">
+  <div class="blog-sidebar">
+  
+<div class="blog-catagory">
+  <h4>Categories</h4>
+  <ul>
+  <li>   <a mat-list-item  [routerLink]="['/Category','India']" >
+      India
+    </a>
+  </li>
+  <li>  <a mat-list-item   [routerLink]="['/Category','Technology']"  >
+      Technology
+    </a></li>
+  <li><a mat-list-item   [routerLink]="['/Category','Education']"  >
+      Education
+    </a></li>
+  <li>  <a mat-list-item   [routerLink]="['/Category','Sport']"  >
+      Sport
+    </a> </li>
+    <li> <a mat-list-item   [routerLink]="['/Category','LifeStyle']"  >
+      LifeStyle
+    </a></li>
+  </ul> 
+  </div>  
+  <br><br>
+ <span>
+    <article>
+     <a [routerLink]="['/authors']"></a>
+    </article>
+  </span>
+   <div class="recent-post">
+  <h4>Recent Post</h4>
+  <div class="recent-blog" *ngFor="let item of data2 ">
+  <a  [routerLink]="['/Articles', item.title]" class="rb-item">
+  <div class="rb-pic" *ngFor="let t of item.Image">
+  <img  src="http://68.183.89.15{{t.url}}" alt="">
+  </div>
+  <div class="rb-text">
+  <h6> {{item.title}}...</h6>
+  <p> {{item.name}} <span>- {{item.updated_at}}</span></p>
+   </div>
+  </a>
+
+  </div>
+  </div>
+ 
+
+
+  <div class="blog-tags">
+  <h4>Product Tags</h4>
+  <div class="tag-item">
+  <a href="#">Towel</a>
+  <a href="#">Shoes</a>
+  <a href="#">Coat</a>
+  <a href="#">Dresses</a>
+  <a href="#">Trousers</a>
+  <a href="#">Men's hats</a>
+  <a href="#">Backpack</a>
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="col-lg-9 order-1 order-lg-2">
+  <div class="row"  *ngFor="let item of data">
+  <div class="col-lg-6 col-sm-6" *ngFor="let i of item.articles" >
+  <div class="blog-item" >
+  <div class="bi-pic" *ngFor="let t of i.Image" >
+  <img  src="http://68.183.89.15{{t.url}}" alt="">
+  </div>
+  <div class="bi-text">
+  <a  [routerLink]="['/articles', i.title]">
+  <h4>{{i.title}}</h4>
+  </a>
+  <p> {{i.authors}}<span>- {{i.updated_at}}</span></p>
+  </div>
+  </div>
+  </div>
+   <div class="col-lg-12">
+ <div class="loading-more">
+  <i class="icon_loading"></i>
+  <a href="#">
+  Loading More
+  </a>
+  </div> 
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  

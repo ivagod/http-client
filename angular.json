@@ -25,7 +25,9 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                "./src/styles-app-loading.scss"
+ 
  
             ],
             "scripts": []
@@ -35,7 +37,7 @@
               "budgets": [
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "22kb"
                 }
               ],
               "fileReplacements": [
@@ -49,7 +51,7 @@
               "budgets": [
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "22kb"
                 }
               ],
               "optimization": true,

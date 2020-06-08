@@ -1,42 +1,66 @@
- 
-   import { Injectable } from '@angular/core';
-  import { Title } from '@angular/platform-browser';
-  import { Meta } from '@angular/platform-browser';
-  import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { filter, map, mergeMap } from 'rxjs/operators';
-  
-  @Injectable()
-  
-  export class SeoService{
-    constructor(
-      private titleService: Title,
-      private meta: Meta,
-      private router: Router,
-      private activatedRoute: ActivatedRoute
-  ) { }
+ import { Injectable } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
-  updateMetaInfo(content, author, category) {
-      this.meta.updateTag({ name: 'description', content: content });
-      this.meta.updateTag({ name: 'author', content: author });
-      this.meta.updateTag({ name: 'keywords', content: category });
+@Injectable()
+
+export class SeoService{
+  titleService: Title;
+  metaService: Meta;
+  siteUrl: string;
+   
+  constructor(private router: Router, titleService: Title, private meta: Meta){
+    
+     this.titleService = titleService;
+    this.metaService = meta;
   }
 
-  updateTitle(title?: string) {
-      if (!title) {
-          this.router.events
-              .pipe(
-                  filter((event) => event instanceof NavigationEnd),
-                  map(() => this.activatedRoute),
-                  map((route) => {
-                      while (route.firstChild) { route = route.firstChild; }
-                      return route;
-                  }),
-                  filter((route) => route.outlet === 'primary'),
-                  mergeMap((route) => route.data)).subscribe((event) => {
-                      this.titleService.setTitle(event['title'] + ' | Site name');
-                  });
-      } else {
-          this.titleService.setTitle(title + ' | Site name');
-      }
+  setTitle(newTitle: string){
+    this.titleService.setTitle(newTitle);
   }
-  };
+
+  setMetaData(title: string, type: string, summary: string, siteName: string, image?: string){
+    this.metaService.addTags([
+      {property: 'og:title', content: title},
+      {property: 'og:type', content: type},
+      {property: 'og:url', content: this.siteUrl},
+      {property: 'og:description', content: summary},
+      {property: 'og:site_name', content: siteName}
+    ]);
+    if(image){
+      this.metaService.addTag({property: 'og:image', content: image});
+    }
+  }
+
+  setTwitterCard(site: string, title: string, summary: string, creator: string, image?:string){
+    this.metaService.addTags([
+        {property: 'twitter:card', content: "summary"},
+        {property: 'twitter:site', content: '@' + site},        
+        {property: 'twitter:title', content: title},
+        {property: 'twitter:description', content: summary},
+        {property: 'twitter:creator', content: creator},      
+    ]);
+    if(image)
+      this.metaService.addTag({property: 'twitter:image:src', content: image}); //image must be atleast 120*120px
+  }
+
+  setSchemaData(name: string, summary: string, image?: string){  // For Google plus
+    this.metaService.addTags([
+      {itemprop: 'name', content: name},
+      {itemprop: 'description', content: summary}
+    ]);
+    if(image){
+      this.metaService.addTag({itemprop: 'image', content: image});
+    }
+  }
+
+  setArticleData(publishTime: string, modifiedTime: string, articleSection: string, articleTag: string) {  // Article data for fb share
+    this.metaService.addTags([
+        {property: 'article:published_time', content: publishTime},
+        {property: 'article:modified_time', content: modifiedTime},
+        {property: 'article:section', content: articleSection},
+        {property: 'article:tag', content: articleTag}        
+    ]);
+  }
+}

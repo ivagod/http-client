@@ -1,1 +1,203 @@
-<p>details works!</p>
+  
+<section id="feature_category_section" class="feature_category_section single-page section_wrapper">
+  <div class="container" *ngFor="let item of data">
+  <div class="row">
+  <div class="col-md-9" >
+  <div class="single_content_layout">
+  <div class="item feature_news_item">
+  <div class="item_img" *ngFor="let t of item.Image">
+  <img class="img-responsive"   src="http://68.183.89.15{{t.url}}"alt="Chania">
+  </div>
+  <div class="item_wrapper">
+  <div class="news_item_title">
+  <h2><a href="#"> {{item.title}} </a></h2>
+  </div>
+  <div class="item_meta"><a href="#">  {{item.updated_at }},</a> by:<a href="#"> {{item.source}},</a></div>
+  <span class="rating">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star-half-full"></i>
+  </span>
+  <share-buttons theme="modern-light" show="11"></share-buttons>
+
+  <share-button [theme]="'modern-dark'"
+        [button]="'facebook'"
+        [showCount]="true"
+        [size]="1"
+        [url]="'https://twitter.com/'"
+        [title]="'top news'"
+        [description]="'imah'"
+        [image]="'https://www.cityam.com/wp-content/uploads/2020/04/skew_multiscreen.png'"
+        [tags]="'news'">
+  </share-button>
+  <div class="item_content">
+    {{item.content}}
+   <br><br>
+   {{item?.content1}}
+   <br><br>
+   {{item?.content2}}
+   </div>
+  <div class="category_list">
+  <a href="#">Messi</a>
+  <a href="#">Leonel</a>
+  <a href="#">Bercelona</a>
+  <a href="#">Argentina</a>
+  <a href="#">Football</a>
+  </div>
+  </div>
+  </div>
+   <div class="single_related_news">
+  <div class="single_media_title"><h2>Related News</h2></div>
+  <div class="col-sm-6" >
+    <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#" *ngFor="let item of data2">
+    <div class="wh-100x abs-tlr"><img ></div>
+    <div class="ml-120 min-h-100x">
+    <h5><b> <a [routerLink]="['/Articles', item.title]" ><b>  {{item.title}} </b></a></b></h5>
+    <h6 class="color-lite-black pt-10">by <span class="color-black"><b>{{item.author}},</b></span> {{item.datetime }}</h6>
+    </div>
+    </a>
+    </div>
+  </div>
+  
+  
+  </div>
+  </div>
+   <div class="add_a_comment">
+  <div class="single_media_title"><h2>Add a Comment</h2></div>
+  <div class="comment_form">
+  <form>
+  <div class="form-group">
+  <input type="text" class="form-control" id="inputName" placeholder="Name">
+  </div>
+  <div class="form-group">
+  <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+  </div>
+  <div class="form-group comment">
+  <textarea class="form-control" id="inputComment" placeholder="Comment"></textarea>
+  </div>
+  <button type="submit" class="btn btn-submit red">Submit</button>
+  </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="col-md-3">
+  <div class="tab sitebar">
+  <ul class="nav nav-tabs">
+  <li class="active"><a href="#1" data-toggle="tab">Latest</a></li>
+  <li><a href="#2" data-toggle="tab">Populer</a></li>
+  </ul>
+  <div class="tab-content">
+  <div class="tab-pane active" id="1">
+  <div class="media">
+  <div class="media-left">
+  <a href="#"><img class="media-object" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+  </div>
+  <div class="media-body">
+  <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
+  <span class="rating">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star-half-full"></i>
+  </span>
+  </div>
+  </div>
+  <div class="media">
+  <div class="media-left">
+  <a href="#"><img class="media-object" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-list5.jpg" alt="Generic placeholder image"></a>
+  </div>
+  <div class="media-body">
+  <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
+  <span class="rating">
+  <i class="fa fa-star"></i>
+   <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star-half-full"></i>
+  </span>
+  </div>
+  </div>
+  <div class="media">
+  <div class="media-left">
+  <a href="#"><img class="media-object" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
+  </div>
+  <div class="media-body">
+  <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
+  <span class="rating">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star-half-full"></i>
+  </span>
+  </div>
+  </div>
+  <div class="media">
+  <div class="media-left">
+  <a href="#"><img class="media-object" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
+  </div>
+  <div class="media-body">
+  <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
+  <span class="rating">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star-half-full"></i>
+  </span>
+  </div>
+  </div>
+  </div>
+  <div class="tab-pane" id="2">
+  <div class="media">
+  <div class="media-left">
+  <a href="#"><img class="media-object" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-list4.jpg" alt="Generic placeholder image"></a>
+  </div>
+  <div class="media-body">
+  <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
+  <span class="rating">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star-half-full"></i>
+  </span>
+  </div>
+  </div>
+  <div class="media">
+  <div class="media-left">
+  <a href="#"><img class="media-object" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+  </div>
+  <div class="media-body">
+  <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
+  <span class="rating">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star-half-full"></i>
+  </span>
+  </div>
+  </div>
+  </div> 
+  </div>
+  </div>
+  
+  <div class="ad">
+  <img class="img-responsive" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-sitebar.jpg" alt="img">
+  <img class="img-responsive" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-sitebar.jpg" alt="img">
+  <img class="img-responsive" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-sitebar.jpg" alt="img">
+  <img class="img-responsive" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-sitebar.jpg" alt="img">
+  </div>
+  <div class="ad">
+  <img class="img-responsive" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-ad.jpg" alt="img">
+  </div>
+  <div class="ad">
+  <img class="img-responsive" src="https://uicookies.com/demo/theme/sports-magazine/assets/img/img-ad2.jpg" alt="img" hidden="" style="display: none !important;">
+  </div>
+   </div>    
+</section>

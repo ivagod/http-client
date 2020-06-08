@@ -11,6 +11,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
  import { StateTransferInitializerModule } from '@nguniversal/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -29,6 +30,7 @@ export function getRequest(): any {
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: false }),
     BrowserAnimationsModule,
     NgbModule,
+    FontAwesomeModule,
   ],
   providers: [
     {

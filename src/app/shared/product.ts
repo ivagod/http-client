@@ -1,16 +1,25 @@
 export interface Product {
-    id?: string;
-    title?: string;
-    category?: string;
-    region?: string;
-    stream?: string;
-    description?: string;
-    image1?: any;
-    img?: string;
-    language?: string;
-    author?: string;
-    updated_at?: number;
-    content?: string;
-    content1?: string;
-    content2?: string;
+    
+
+    title: string;
+    category: string;
+    source: string;
+    
+  
+    language: string;
+    author: string;
+
+    description: string;
+    content: any[];
+    content1: any[];
+    content2: any[];
+
+    created_at: number;
+    Image: any[];
+    Image1:any[];
+    url:any;
+
+    categories:string;
+    name:string;
 }
+

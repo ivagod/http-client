@@ -1,0 +1,62 @@
+{
+  "configVersion": 1,
+  "timestamp": 1591629845548,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/index.html",
+        "/main.53d5d477c2338c091210.js",
+        "/polyfills-es5.8166366f9f93879a295c.js",
+        "/polyfills.b18423f93fb81516b1d5.js",
+        "/runtime.689ba4fd6cadb82c1ac2.js",
+        "/styles.e5c542a644de2fb448ed.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/i18n/en.json",
+        "/assets/i18n/ru.json",
+        "/assets/logo.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/i18n/en.json": "483f8fd3fea47c3c9303645ccdebbd969cd0f415",
+    "/assets/i18n/ru.json": "312e542618dee8277865dc6937361e41b599ae89",
+    "/assets/logo.png": "b0beea179a410b9a4d37688ef76bd57411736966",
+    "/index.html": "efc77163af60ecbbb1f1b9666c415080b29e9df9",
+    "/main.53d5d477c2338c091210.js": "71d92722551baac658485a248c8e5ea680d0a308",
+    "/polyfills-es5.8166366f9f93879a295c.js": "71c670252bca873ada4578708ed202782dcdef1e",
+    "/polyfills.b18423f93fb81516b1d5.js": "44ced9acc4775769d8400ad07c22c9adb2cacd57",
+    "/runtime.689ba4fd6cadb82c1ac2.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/styles.e5c542a644de2fb448ed.css": "c71b56bd56ab48511b9a03a900d7e8e729f515da"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}

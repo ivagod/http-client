@@ -1,10 +1,13 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, switchMap, tap, map } from 'rxjs/operators';
 import { SeoService } from '@shared/seo.service';
+import { Product } from '@shared/product'; 
+import { Title, Meta } from '@angular/platform-browser';
+import { BlogServiceService } from '@shared/blog-service.service';
 
 
 @Component({
@@ -13,55 +16,108 @@ import { SeoService } from '@shared/seo.service';
   styleUrls: ['./details.component.css']
 })
 
-export class DetailsComponent implements OnInit,OnChanges {
-  public title : string;
+export class DetailsComponent implements OnInit   {
 
-  public  data: Observable<any>;
-   loading = true;
+  websiteName: string;
+  websiteDescription: string;
+  websiteImage: string;
 
-  constructor(public activatedRoute: ActivatedRoute,private http: HttpClient,private seo: SeoService){
+  public data : Product[];
+  private data2 : Product[];
+
+  
+    constructor(public activatedRoute: ActivatedRoute, 
+      private titleService: Title,
+      private metaTagService: Meta,
+
+      private blog:BlogServiceService,
+     private seo :SeoService
+    ,private http: HttpClient
+     ){
+      this.setSeoTags();
+     
+    } 
  
-    this.seo.updateTitle();
+   ngOnInit(): void {
+    this. getdatails();
+    this.http_get_02();
+
   }
-   //  get(
-  //  `http://localhost:1337/articles?slug=${this.title} `,
- //    http://localhost:1337/articles?title= 
- 
-  ngOnInit(): void {
+
+   getdatails() {
     this.activatedRoute.params.subscribe( res => { 
-      console.log(res['title']);
-      this.http
-      .get<any>(`http://localhost:1337/articles?title=${res['title']}`)
-      .pipe(
-        retry(4),
-         catchError(this.handleError)
-      )
-      .subscribe((res) => {
-        this.data = res;
-        console.log(this.data);
+      const title :string= res['title'];
+      this.titleService.setTitle(title);
+      
+    this.blog.getdetails(title)
+     .subscribe((data :Product[]) => {
+      return  this.data = data;
       });
-    });
-     // this.title = res['title'];  
+  })
   }
-ngOnChanges() : void{
-  
+  http_get_02() {  
+     this.blog.http_get_02() 
+    .subscribe((data:Product[]) => {
+       return  this.data2 = data;
+      });
+  }
 
-}
-  
+ 
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
-  };
+  setSeoTags(){
+ 
+  //  this.seo.setTitle(this.data.);
+    this.seo.setSchemaData(this.websiteName, this.websiteDescription, this.websiteImage);
+    this.seo.setMetaData(this.websiteName, "Website", this.websiteDescription, "www.nodebeats.com", this.websiteImage);
+    this.seo.setTwitterCard("nodebeats", this.websiteName, this.websiteDescription, "nodebeats", this.websiteImage);
 }
+
+
+
+ 
+ 
+}
+
+
+
+
+
+
+
+
+
+// ngOnInit() {
+//   this.route.data
+//     .pipe(
+//       map(data => data['products']),
+//       tap(products => this.metaData(products)),
+//     )
+//     .subscribe(res => this.products = res);
+// }
+
+// metaData(products: Product[]) {
+//   this.ui.setMetaData({
+//     title: 'Products',
+//     description: `Check out our collection of ${products.length} products`
+//   });
+// }
+// }
+
+
+
+
+ 
+    // this.activatedRoute.data.pipe(
+    //   switchMap((data) => this.activatedRoute.paramMap.pipe(
+    //      switchMap((params) => this.http.get<any>( ` https://infinite-mountain-30260.herokuapp.com/articles?title=${params.get('title')}`)
+    // .pipe(
+    //      tap((product: Product) => {
+    //       const title = ` ${product.title}`;
+    //        this.seo.setTitle(this.title);
+    //        this.seo.setSchemaData(  this.websiteName,  this.websiteDescription,);
+    //        console.log(this.title);
+    //      //  this.metaService.updateTag({ name: 'description', content: product.description});
+    //     }),)
+         
+    //   )))    
+    //   )}

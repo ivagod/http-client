@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule ,CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,15 +18,25 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
  import { FooterComponent } from './footer/footer.component';
 
 import { ArticlesModule } from './Articles/articles.module';
-import { CategoryModule } from './Category/category.module';
-import { DetailsComponent } from './details/details.component';
+ import { DetailsComponent } from './details/details.component';
 import { CategeroyDetailsComponent } from './categeroy-details/categeroy-details.component';
     
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SeoService } from '@shared/seo.service';
+import { BlogServiceService } from '@shared/blog-service.service';
   
-  
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { UrlSerializer } from '@angular/router';
+import { CustomUrlSerializer } from './shared/custom-url-serializer';
+import { GoogleAnalyticsService } from '@shared/google-analytics.service';
+
+
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+   
  @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +50,7 @@ import { SeoService } from '@shared/seo.service';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
- 
+    FontAwesomeModule,
     FlexLayoutModule.withConfig({ssrObserveBreakpoints: ['xs', 'lt-md']}),
     LayoutModule,
     MatToolbarModule,
@@ -51,10 +61,22 @@ import { SeoService } from '@shared/seo.service';
     MatProgressSpinnerModule,
      
     HttpClientModule,  
+    NgxSpinnerModule  ,
+
      ArticlesModule,
-     CategoryModule,
+ 
+     ShareButtonsModule.withConfig({
+      debug: true
+    }),
+    ShareIconsModule,
+
   ],
-  providers: [ SeoService  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA],
+
+  providers: [ SeoService ,BlogServiceService, GoogleAnalyticsService,
+     { provide: UrlSerializer, useClass: CustomUrlSerializer },
+
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

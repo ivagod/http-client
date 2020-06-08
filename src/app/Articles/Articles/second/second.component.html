@@ -4,9 +4,9 @@
       <div class="col-md-12 col-lg-8">
       <h4 class="p-title"> <b> <a [routerLink]="['/categeroys', 'tech']" >Recent news  </a></b> </h4>
       <div class="row">
-      <div class="col-sm-6" *ngFor="let item of products">
-         <div *ngFor="let item of item.image1" >                
-          <img src="https://infinite-mountain-30260.herokuapp.com{{item.url}}">  
+      <div class="col-sm-6" *ngFor="let item of data">
+         <div *ngFor="let item of item.Image" >                
+          <img src="http://68.183.89.15{{item.url}}">  
          </div>    
         <h4 class="pt-20"><a   [routerLink]="['articles', item.title]" ><b>  {{item.title}} </b></a></h4>
         <ul class="list-li-mr-20 pt-10 pb-20">
@@ -17,13 +17,12 @@
         </ul> 
         <p>{{item.description}}</p>
         </div>
-   <!-- second ngfor   -->
-  
+   
    <div class="col-sm-6" >
-    <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#" *ngFor="let item of second">
+    <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#" *ngFor="let item of data1">
     <div class="wh-100x abs-tlr">
-      <div *ngFor="let t of item.image1" >                
-        <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+      <div *ngFor="let t of item.Image" >                
+        <img src="http://68.183.89.15{{t.url}}">  
       </div> 
      </div>
     <div class="ml-120 min-h-100x">
@@ -33,12 +32,12 @@
     </a>
     </div>
     </div>
-
-    <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'world']" > news</a>   </b></h4>
+    http:// 68.183.89.15
+    <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'world']" > Top news</a>   </b></h4>
     <div class="row" >
-    <div class="col-sm-6" *ngFor="let item of third">
-      <div *ngFor="let t of item.image1" >                
-        <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+    <div class="col-sm-6" *ngFor="let item of data2">
+      <div *ngFor="let t of item.Image" >                
+        <img src="http://68.183.89.15{{t.url}}">  
       </div> 
      <h4 class="pt-20"><a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h4>
     <ul class="list-li-mr-20 pt-10 mb-30">
@@ -49,11 +48,11 @@
     </div>
      </div>
 
-    <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'science']" > news</a>   </b></h4>
+    <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'science']" >  Educetion News</a>   </b></h4>
     <div class="row" >
-    <div class="col-sm-6" *ngFor="let item of third">
-      <div *ngFor="let t of item.image1" >                
-        <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+    <div class="col-sm-6" *ngFor="let item of data3">
+      <div *ngFor="let t of item.Image" >                
+        <img src="http://68.183.89.15{{t.url}}">  
       </div> 
      <h4 class="pt-20"><a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h4>
     <ul class="list-li-mr-20 pt-10 mb-30">
@@ -64,11 +63,11 @@
     </div>
      </div>
     
-     <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'entertainment']" > news</a>   </b></h4>
+     <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'entertainment']" > Entertainment</a>   </b></h4>
      <div class="row" >
-     <div class="col-sm-6" *ngFor="let item of third">
-       <div *ngFor="let t of item.image1" >                
-         <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+     <div class="col-sm-6" *ngFor="let item of data4">
+       <div *ngFor="let t of item.Image" >                
+         <img src="http://68.183.89.15{{t.url}}">  
        </div> 
       <h4 class="pt-20"><a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h4>
      <ul class="list-li-mr-20 pt-10 mb-30">
@@ -81,9 +80,9 @@
     
       <h4 class="p-title mt-30"><b> <a [routerLink]="['/categeroys', 'entertainment']" > news</a>   </b></h4>
       <div class="row" >
-      <div class="col-sm-6" *ngFor="let item of third">
-        <div *ngFor="let t of item.image1" >                
-          <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+      <div class="col-sm-6" *ngFor="let item of  data5">
+        <div *ngFor="let t of item.Image" >                
+          <img src="http://68.183.89.15{{t.url}}">  
         </div> 
        <h4 class="pt-20"><a  [routerLink]="['articles', item.title]"><b> {{item.title}}</b></a></h4>
       <ul class="list-li-mr-20 pt-10 mb-30">
@@ -94,7 +93,7 @@
       </div>
        </div>      
    
-    <a class="dplay-block btn-brdr-primary mt-20 mb-md-50"  [routerLink]="['/categeroys', 'cronavirus']"><b>VIEW MORE</b></a>
+    <a class="dplay-block btn-brdr-primary mt-20 mb-md-50"  [routerLink]="['/viewmore']"><b>VIEW MORE</b></a>
     </div>
     <div class="d-none d-md-block d-lg-none col-md-3"></div>
     <div class="col-md-6 col-lg-4">
@@ -111,10 +110,10 @@
 
     <div class="mtb-50   " >
     <h4 class="p-title" ><b>POPULAR POSTS</b></h4>
-    <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#" *ngFor="let item of  second ">
-    <div class="wh-100x abs-tlr">
-      <div *ngFor="let t of item.image1" >                
-        <img src="https://infinite-mountain-30260.herokuapp.com{{t.url}}">  
+    <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#" *ngFor="let item of  data3 ">
+      <div class="wh-100x abs-tlr">
+      <div *ngFor="let t of item.Image" >                
+        <img src="http://68.183.89.15{{t.url}}">  
       </div> 
      </div>
     <div class="ml-120 min-h-100x">
@@ -137,9 +136,10 @@
     </div>
     </div>
     </div>
+ 
 
      </section>
-  
+
   <router-outlet></router-outlet>
      
  

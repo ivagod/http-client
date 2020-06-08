@@ -2,26 +2,119 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Product } from './product';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, retry, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogServiceService {
-   
-  public API_URL = 'http://newsapi.org/v2/top-headlines?' +
-                   'country=us&' +
-                   'apiKey=aaa86f9381f24225923570f7e820c10b';
+ 
+   constructor(private http:HttpClient){}
 
-  constructor(private _http:HttpClient) { }
 
-  getBlogDetail( ):Observable<Product[]> {
-    // console.log("BlogDetail", API_URL)
-    return this._http.get<Product[]>(this.API_URL)
-        .pipe(
-            catchError(this.handleError)
-        );
+getCategory(name: string): Observable<Product[]> {
+  return this.http.get<Product[]>(
+    `http://68.183.89.15/categories?name=`+name, 
+     ).pipe(
+         map((data:Product[]) => {
+           return data;
+         }),
+         retry(2),
+         catchError(this.handleError),
+      )
 }
+
+getdetails(title: string): Observable<Product[]> {
+  return this.http.get<Product[]>(
+    `http://68.183.89.15/articles?title=`+ title, 
+     ).pipe(
+         map((data:Product[]) => {
+           return data;
+         }),
+         retry(4),
+         catchError(this.handleError),
+      )
+}
+
+ getarticles(): Observable<Product[]>{
+  return this.http.get<Product[]>(
+    `http://68.183.89.15/articles?&_limit=65`, 
+     ).pipe(
+         map((data:Product[]) => {
+           return data;
+         }),
+           catchError(this.handleError),
+      )
+
+ }
+
+   http_get(): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      `http://68.183.89.15/articles?&_limit=1`, 
+       ).pipe(
+           map((data:Product[]) => {
+             return data;
+           }),
+            catchError(this.handleError),
+        )
+}
+http_get_01(): Observable<Product[]> {
+  return this.http.get<Product[]>(
+    `http://68.183.89.15/articles?&_limit=3`, 
+     ).pipe(
+         map((data:Product[]) => {
+           return data;
+         }),
+          catchError(this.handleError),
+      )
+} 
+ http_get_02(): Observable<Product[]> {
+  return this.http.get<Product[]>(
+    `http://68.183.89.15/articles?&_limit=4`, 
+     ).pipe(
+         map((data:Product[]) => {
+           return data;
+         }),
+          catchError(this.handleError),
+      )
+} 
+ http_get_03(): Observable<Product[]> {
+  return this.http.get<Product[]>(
+    `http://68.183.89.15/articles?&_limit=4`, 
+     ).pipe(
+         map((data:Product[]) => {
+           return data;
+         }),
+         retry(2),
+         catchError(this.handleError),
+      )
+}
+http_get_04(): Observable<Product[]> {
+  return this.http.get<Product[]>(
+    `http://68.183.89.15/articles?&_limit=4`, 
+     ).pipe(
+         map((data:Product[]) => {
+           return data;
+         }),
+         retry(3),
+         catchError(this.handleError),
+      )
+}
+http_get_05(): Observable<Product[]> {
+  return this.http.get<Product[]>(
+    `http://68.183.89.15/articles?&_limit=4`, 
+     ).pipe(
+         map((data:Product[]) => {
+           return data;
+         }),
+         retry(4),
+         catchError(this.handleError),
+      )
+}
+
+
+
+
 private handleError(error: HttpErrorResponse) {
   if (error.error instanceof ErrorEvent) {
     // A client-side or network error occurred. Handle it accordingly.
@@ -37,5 +130,7 @@ private handleError(error: HttpErrorResponse) {
   return throwError(
     'Something bad happened; please try again later.');
 };
+
+ 
 
 }

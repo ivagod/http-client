@@ -1,4 +1,7 @@
 FROM node:12-alpine as buildContainer
+FROM nginx:1.17.1-alpine
+
+COPY /dist /usr/share/nginx/html
 
 COPY . /app
 WORKDIR /app

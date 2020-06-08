@@ -1,21 +1,39 @@
 import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { BreakpointObserver } from '@angular/cdk/layout';
+ 
+
+const LINKS: any[] = [
+  { link: '/home', name: 'home', icon: 'home' },
+  { link: '/categeroy/tech', name: 'mock', icon: 'info_outline' },
+  { link: '/async', name: 'async-http', icon: 'swap_vert' },
+  { link: '/back', name: 'back-http', icon: 'swap_vert' },
+  { link: '/static/back', name: 'static-back-http', icon: 'swap_vert' },
+  { link: '/nonexistent', name: 'nonexistent', icon: 'error' }
+];
+
+
 
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
+
+
 export class NavbarComponent {
 
+  public links: any[] = [];
   sidenavWidth = 4;
   ngStyle: string;
  
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
+    const linkTemp = JSON.parse(JSON.stringify(LINKS));
+    this.links = linkTemp.map((link) => {
+      link.name = `${link.name}`;
+      return link;
+    });
 
   }
 

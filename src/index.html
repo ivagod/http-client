@@ -2,16 +2,20 @@
 <html lang="en">
 
 <head>
+  <script data-ad-client="ca-pub-1140182026804402" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <meta charset="utf-8">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
+  <script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- 
-  <link rel="icon" type="image/png" href="./assets/logo.png">
+
+   <link rel="icon" type="image/png" href="./assets/logo.png">
   <style type="text/css">
     body, html {
       height: 100%;
@@ -67,19 +71,27 @@
       }
     }
   </style>
-
 </head>
-
-<body class="mat-typography">
-  <app-root>
+<body>
+  <app-root> <!-- selector from app.component.ts -->
     <div class="app-loading">
       <div class="logo">
-        <svg class="spinner" viewBox="25 25 50 50 ">
+        <svg class="spinner" viewBox="25 25 50 50">
           <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
         </svg>
       </div>
-    </div>
+    </div> 
+    
   </app-root>
-  <app-inline-style></app-inline-style>
-</body> 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-168732987-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-168732987-1');
+</script>
+
+</body>
 </html>

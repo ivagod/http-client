@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { catchError, retry, finalize, map, tap } from 'rxjs/operators';
+import { Product } from '@shared/product';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BlogServiceService } from '@shared/blog-service.service';
+import { SeoService } from '@shared/seo.service';
  
 @Component({
   selector: 'app-second',
@@ -11,106 +15,81 @@ import { catchError, retry, finalize, map, tap } from 'rxjs/operators';
 })
 export class SecondComponent implements OnInit {
 
-  public  products: Observable<any>;
-  public  second: Observable<any>;
-  public  third: Observable<any>;
-  public  forth: Observable<any>;
-  public  five: Observable<any>;
-  public  six: Observable<any>;
-  public  seven: Observable<any>;
-  
-  url = 'https://infinite-mountain-30260.herokuapp.com/articles?&_limit=1';
-  loading: boolean = true;
-
-  constructor(private http: HttpClient ) { }
+  public  data:  Product[];
+  public  data1:  Product[];
+  public  data2:  Product[];
+  public  data3:  Product[];
+  public  data4:  Product[];
+  public  data5:  Product[];
+    
+   loading: boolean;
+   constructor(private http: HttpClient,private blog: BlogServiceService,private seo:SeoService,
+              private SpinnerService: NgxSpinnerService ) { }
 
   ngOnInit(): void {
-    this.http_get_01();
-    this. http_get_02(); 
-    this. http_get_03();
-    this.http_get_04();
-    this.http_get_05();
-    this.http_get_06();
-    this.http_get_07();
+    this.  http_get();
+     this.http_get_01();
+     this. http_get_02(); 
+     this. http_get_03();
+     this.http_get_04();
+     this.http_get_05();
+    // this.http_get_06();
+    // this.http_get_07();
   }
 
-  http_get_01(){
-    this.loading = true;
-    this.http.get<any[]>(this.url)
-    .pipe(  
-        map(data => data['products']),
-           retry(3),
-          finalize(() => this.loading = false),   
-          catchError(this.handleError)
-    ).subscribe((res) => {
-     return  this.products = res;
+   
+  http_get() {  
+    this.SpinnerService.show();  
+    this.blog.http_get() 
+    .subscribe((data:Product[]) => {
+       this.data = data;
+      this.SpinnerService.hide();
      });
-    }
+  }
+  http_get_01() {  
+    this.SpinnerService.show();  
+    this.blog.http_get_01() 
+    .subscribe((data:Product[]) => {
+       this.data1 = data;
+      this.SpinnerService.hide();
+     });
+  }
 
-     
-    http_get_02() {
-      this.loading = true;
-      this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=5')
-      .pipe(
-        retry(3),
-        finalize(() => this.loading = false),
-        catchError(this.handleError)
-      ).subscribe((res) => {
-        this.second = res;
-       });}
-
-      http_get_03() {
-        this.loading = true;
-        this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
-        .pipe(
-          retry(7),
-          finalize(() => this.loading = false),
-          catchError(this.handleError)
-        ).subscribe((res) => {
-          this.third = res;
-         });}
-        http_get_04() {
-          this.loading = true;
-          this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
-          .pipe(
-            retry(3),
-            finalize(() => this.loading = false),
-            catchError(this.handleError)
-          ).subscribe((res) => {
-            this.second = res;
-           });}
-          http_get_05() {
-            this.loading = true;
-            this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
-            .pipe(
-              retry(3),
-              finalize(() => this.loading = false),
-              catchError(this.handleError)
-            ).subscribe((res) => {
-              this.second = res;
-             });}
-            http_get_06() {
-              this.loading = true;
-              this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
-              .pipe(
-                retry(3),
-                finalize(() => this.loading = false),
-                catchError(this.handleError)
-              ).subscribe((res) => {
-                this.second = res;
-               });}
-                http_get_07() {
-                  this.loading = true;
-                  this.http.get<any>('https://infinite-mountain-30260.herokuapp.com/articles?&_limit=4')
-                  .pipe(
-                    retry(3),
-                    finalize(() => this.loading = false),
-                    catchError(this.handleError)
-                  ).subscribe((res) => {
-                    this.second = res;
-                   });}
-
-                   
+  http_get_02() {  
+    this.SpinnerService.show();  
+    this.blog.http_get_02() 
+    .subscribe((data:Product[]) => {
+       this.data2 = data;
+      this.SpinnerService.hide();
+     });
+  }
+  http_get_03() {  
+    this.SpinnerService.show();  
+    this.blog.http_get_03() 
+    .subscribe((data:Product[]) => {
+       this.data3 = data;
+      this.SpinnerService.hide();
+     });
+  }
+   
+  http_get_04() {  
+    this.SpinnerService.show();  
+    this.blog.http_get_04() 
+    .subscribe((data:Product[]) => {
+       this.data4 = data;
+      this.SpinnerService.hide();
+     });
+  }
+  http_get_05() {  
+    this.SpinnerService.show();  
+    this.blog.http_get_05() 
+    .subscribe((data:Product[]) => {
+       this.data5 = data;
+      this.SpinnerService.hide();
+     });
+  }
+ 
+                    
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
